@@ -5258,7 +5258,12 @@ function noteApp() {
             const url = `/api/export/${encodedPath}?theme=${encodeURIComponent(currentTheme)}&download=false`;
             
             // Open in new window/tab
-            window.open(url, '_blank');
+            printWin = window.open(url, '_blank');
+		    printWin.focus();
+		    printWin.onload = () => {
+		        printWin.print();
+		        printWin.close();
+		    };            
         },
         
         // Copy current note link to clipboard
